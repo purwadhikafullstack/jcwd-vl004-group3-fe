@@ -1,0 +1,12 @@
+.cellWrapper {
+  display: flex;
+  align-items: center;
+
+  .image {
+    width: 100px;
+    height: 100px;
+
+    margin-right: 10px;
+    object-fit: cover;
+  }
+}
