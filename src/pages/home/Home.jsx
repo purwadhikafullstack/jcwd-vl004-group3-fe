@@ -1,10 +1,19 @@
-// import Navbar from "../../components/navbar/Navbar";
+// import Navbar from "../../components/navbar/Navbar";\
+import { useEffect } from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Table from "../../components/table/Table";
 import Widget from "../../components/widget/Widget";
 import "./home.scss";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const userData = localStorage.getItem("adminUserData");
+  useEffect(() => {
+    if (userData === null) {
+      navigate("/login", { replace: true });
+    }
+  }, [userData]);
   return (
     <div className="home">
       <Sidebar />

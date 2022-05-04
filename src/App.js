@@ -5,6 +5,8 @@ import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
 import { productInputs, userInputs } from "./formSource";
+import { connect } from "react-redux";
+import { checkStorage } from "./redux/actions/admin";
 
 function App() {
   return (
@@ -37,4 +39,15 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    adminGlobal: state.admin,
+    userGlobal: state.user,
+  };
+};
+
+const mapDispatchToProps = {
+  checkStorage,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
