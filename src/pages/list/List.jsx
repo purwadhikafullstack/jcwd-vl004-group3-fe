@@ -6,7 +6,7 @@ import ProductsDatatable from "../../components/datatable/ProductsDatatable";
 
 const List = () => {
   switch (window.location.pathname) {
-    case "/users":
+    case "/admin/users":
       return (
         <div className="list">
           <Sidebar />
@@ -17,7 +17,7 @@ const List = () => {
         </div>
       );
 
-    case "/products":
+    case "/admin/products":
       return (
         <div className="list">
           <Sidebar />

@@ -11,8 +11,9 @@ const Home = () => {
   const userData = localStorage.getItem("adminUserData");
   useEffect(() => {
     if (userData === null) {
-      navigate("/login", { replace: true });
+      navigate("/admin/login", { replace: true });
     }
+    // eslint-disable-next-line
   }, [userData]);
   return (
     <div className="home">

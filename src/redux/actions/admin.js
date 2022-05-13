@@ -25,7 +25,9 @@ export const loginAdmin = ({ email, password }) => {
         });
       }
     } catch (error) {
-      console.error(error);
+      if (error.response.status === 403) {
+        alert("Wrong email or password.");
+      }
       dispatch({
         type: "ADMIN_ERROR",
         payload: "Login failed:\n" + error,

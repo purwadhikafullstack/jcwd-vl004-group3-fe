@@ -19,8 +19,11 @@ const Login = (props) => {
   const userData = localStorage.getItem("adminUserData");
   useEffect(() => {
     if (userData !== null) {
-      navigate("/", { replace: true });
+      if (JSON.parse(userData).token !== null) {
+        navigate("/admin", { replace: true });
+      }
     }
+    // eslint-disable-next-line
   }, [userData]);
   return (
     <div
@@ -58,15 +61,8 @@ const Login = (props) => {
               }}
               // submission code goes here
               onSubmit={(values, { setSubmitting }) => {
-                try {
-                  props.loginAdmin(values);
-                  setSubmitting(false);
-                  navigate("/", { replace: true });
-                } catch (error) {
-                  setSubmitting(false);
-                  console.error(error);
-                  alert(error);
-                }
+                props.loginAdmin(values);
+                setSubmitting(false);
               }}
             >
               {({ submitForm, isSubmitting }) => (
