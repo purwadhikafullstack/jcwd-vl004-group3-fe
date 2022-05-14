@@ -96,7 +96,7 @@ const ProductsDatatable = () => {
     <div className="datatable">
       <div className="datatableTitle">
         Add New Product
-        <Link to="/products/new" className="link">
+        <Link to="/admin/products/new" className="link">
           Add New
         </Link>
       </div>

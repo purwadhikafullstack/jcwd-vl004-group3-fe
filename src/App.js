@@ -1,17 +1,22 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// admin pages
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
+// user pages
+import Landing from "./pages/user/Landing";
 import { productInputs, userInputs } from "./formSource";
+import { connect } from "react-redux";
+import { checkStorage } from "./redux/actions/admin";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/">
+          <Route path="/admin">
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
             <Route path="users">
@@ -31,10 +36,24 @@ function App() {
               />
             </Route>
           </Route>
+          <Route path="/">
+            <Route index element={<Landing />}></Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    adminGlobal: state.admin,
+    userGlobal: state.user,
+  };
+};
+
+const mapDispatchToProps = {
+  checkStorage,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

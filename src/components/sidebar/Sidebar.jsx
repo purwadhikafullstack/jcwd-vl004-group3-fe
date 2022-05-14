@@ -8,12 +8,14 @@ import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import StoreMallDirectoryOutlinedIcon from "@mui/icons-material/StoreMallDirectoryOutlined";
 import { Link } from "react-router-dom";
 import {} from "@mui/icons-material";
+import { connect } from "react-redux";
+import { logoutAdmin } from "../../redux/actions/admin";
 
-const Sidebar = () => {
+const Sidebar = (props) => {
   return (
     <div className="sidebar">
       <div className="top">
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/admin" style={{ textDecoration: "none" }}>
           <span className="logo">Bango Admin</span>
         </Link>
       </div>
@@ -23,18 +25,18 @@ const Sidebar = () => {
           <p className="title">MAIN</p>
           <li>
             <DashboardOutlinedIcon className="icon" />
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link to="/admin" style={{ textDecoration: "none" }}>
               <span>Dashboard</span>
             </Link>
           </li>
           <p className="title">LISTS</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          <Link to="/admin/users" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineOutlinedIcon className="icon" />
               <span>Users</span>
             </li>
           </Link>
-          <Link to="/products" style={{ textDecoration: "none" }}>
+          <Link to="/admin/products" style={{ textDecoration: "none" }}>
             <li>
               <StoreMallDirectoryOutlinedIcon className="icon" />
               <span>Products</span>
@@ -53,9 +55,9 @@ const Sidebar = () => {
             <InsertChartOutlinedIcon className="icon" />
             <span style={{ opacity: "0.5" }}>Stats</span>
           </li>
-          <li>
+          <li onClick={props.logoutAdmin}>
             <ExitToAppOutlinedIcon className="icon" />
-            <span style={{ opacity: "0.5" }}>Logout</span>
+            <span>Logout</span>
           </li>
         </ul>
       </div>
@@ -63,4 +65,14 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+const mapStateToProps = (state) => {
+  return {
+    adminGlobal: state.admin,
+  };
+};
+
+const mapDispatchToProps = {
+  logoutAdmin,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
